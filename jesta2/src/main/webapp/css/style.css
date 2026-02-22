@@ -1,0 +1,101 @@
+@CHARSET "ISO-8859-1";
+
+p {
+	text-align: center;
+	color: red;
+}
+logo{
+	height:"120";
+}
+
+td, th {
+	vertical-align: middle;
+	text-align: center;
+}
+  
+.btn-custom{
+	margin-bottom: 10px !important;
+}
+
+.img-joc{
+	width:	50px;
+	height: 50px;
+}
+
+.logo-mini{
+	width:"100"; 
+	height:"50"; 
+}
+.logo-lg{
+	
+}
+.bg-green-active{
+	text-align: center;
+}
+.backgroundwhite{
+	background-color:rgb(255,255,255);
+}
+
+/* Index */
+.jumbotron{
+    background-image: url("https://jocsquart.com/images/Copia_de_JESTA.png");
+  	background-size: contain;
+  	background-position: center;
+  	background-repeat: no-repeat;  	
+  	margin-left: 10%;
+  	min-height: 300px
+}
+
+.principalEditoriales{
+	text-align: center; 
+    vertical-align: middle;
+    padding-top: 5px !important;
+}
+
+.img-index{
+	margin-top: 5px;
+    margin-bottom: 5px;
+}
+ 
+
+.container-fluid{
+	height:1500px;
+}
+
+/* Login */
+.login-box{
+	
+}
+.login-page{
+	
+}
+
+.icon-desc{
+	padding:0 important!;
+}
+
+/* Pasaporte */
+.border { 
+	border-width: 2px; 
+	border-color: red; 
+	border-style: solid;
+}
+
+.edit-logo {
+    width: 8%;
+}
+
+
+/* El estilo define las páginas asociadas a juegos (formulariojuego y buscarjuego) */
+
+/* Transaccion */
+
+#tablaJesetas{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.checkbox-xl{
+	zoom:2 !important;
+}
+
