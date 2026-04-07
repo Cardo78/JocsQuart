@@ -11,6 +11,7 @@ import interfazDB.IPasaporteDAO;
 import interfazDB.IUbicacionDAO;
 import interfazDB.IUsuarioDAO;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,50 +45,48 @@ public class DBBasic extends IDBDAO {
 	
 	public DBBasic() throws IOException {
 		Properties prop = new Properties();
-		String rutaConfig = "/tmp/config.properties";
+		String rutaConfig = DEBUG ? "config.properties" : "/tmp/config.properties";
+		File fileConfig = new File(rutaConfig);
+	
+	    if (fileConfig.exists()) {
+	        // 1. Intentar cargar el archivo existente
+	        try (InputStream input = new FileInputStream(fileConfig)) {
+	        	String path = fileConfig.getAbsolutePath();
+	        	System.out.println(path);
+	        	prop.load(input);
+	            BD = prop.getProperty("servidor.BD");
+	            DBURL = prop.getProperty("servidor.DBURL");
+	            LOGIN = prop.getProperty("servidor.LOGIN");
+	            PASS = prop.getProperty("servidor.PASS");
+	            System.out.println("Configuración cargada desde archivo.");
+	        	
+	        } catch (IOException e) {
+	            System.err.println("Error al leer el archivo, se solicitarán datos.");
+	            DatosDB(prop, fileConfig);
+	        }
+	     }
+	    else {
+	    	DatosDB(prop, fileConfig);
+	    }
+	    	
+	}
+	
+	private void DatosDB (Properties prop, File fileConfig) throws IOException {
+		prop.setProperty("servidor.BD", BD);
+		prop.setProperty("servidor.DBURL", DBURL);
 		if (DEBUG) {
-			rutaConfig = "config.properties";
-		}
-		try {
-				InputStream input = DBBasic.class.getClassLoader().getResourceAsStream(rutaConfig);
-
-				try {
-					if (input == null) {
-						File fileout = null;
-						prop.setProperty("servidor.BD", BD);
-						prop.setProperty("servidor.DBURL", DBURL);
-						if (DEBUG) {
-							prop.setProperty("servidor.LOGIN", LOGINDEBUG);
-							prop.setProperty("servidor.PASS", PASSDEBUG);
-						} else {
-							prop.setProperty("servidor.LOGIN", LOGIN);
-							prop.setProperty("servidor.PASS", PASS);
-						}
-
-						fileout = new File(rutaConfig);
-						fileout.createNewFile();
-						OutputStream out = new FileOutputStream(fileout);
-						prop.store(out, (String) null);
-					} else {
-						prop.load(DBBasic.class.getClassLoader().getResourceAsStream(rutaConfig));
-						BD = prop.getProperty("servidor.BD");
-						DBURL = prop.getProperty("servidor.DBURL");
-						LOGIN = prop.getProperty("servidor.LOGIN");
-						PASS = prop.getProperty("servidor.PASS");
-					}
-				} finally {
-					if (input != null) {
-						input.close();
-					}
-
-				}
-
-			} 
-		catch(IOException io) {
-			io.printStackTrace();
-			throw io;
+			prop.setProperty("servidor.LOGIN", LOGINDEBUG);
+			prop.setProperty("servidor.PASS", PASSDEBUG);
+		} else {
+			prop.setProperty("servidor.LOGIN", LOGIN);
+			prop.setProperty("servidor.PASS", PASS);
 		}
 
+	    // Guardar en el fichero
+	    try (OutputStream out = new FileOutputStream(fileConfig)) {
+	        prop.store(out, "Configuración guardada automáticamente");
+	        System.out.println("Datos guardados con éxito en: " + fileConfig.getAbsolutePath());
+	    }
 	}
 	
 	public boolean Conectar() throws Exception {
