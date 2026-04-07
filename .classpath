@@ -13,5 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="E:/Jesta/jesta/src/main/webapp/WEB-INF/lib/mariadb-java-client-3.5.7.jar"/>
+	<classpathentry kind="lib" path="E:/Jesta/jesta/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.28.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

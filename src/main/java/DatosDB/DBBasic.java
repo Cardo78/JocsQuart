@@ -22,15 +22,15 @@ import java.util.Properties;
 public class DBBasic extends IDBDAO {
 	
 	// 1. Cambiamos el Driver al de MariaDB
-	public static final String DRIVER = "org.mariadb.jdbc.Driver";
-	//public static final String DRIVER = "com.mysql.jdbc.Driver";
+	//public static final String DRIVER = "org.mariadb.jdbc.Driver";
+	public static final String DRIVER = "com.mysql.jdbc.Driver";
 	
 	public Connection conexion;
 	public static String BD = "gesjornadas";
 	
 	// 2. Cambiamos el protocolo de la URL de 'mysql' a 'mariadb'
-    public static String DBURL = "jdbc:mariadb://localhost:3306/gesjornadas";
-	//public static String DBURL = "jdbc:mysql://localhost:3306/gesjornadas";
+    //public static String DBURL = "jdbc:mariadb://localhost:3306/gesjornadas";
+	public static String DBURL = "jdbc:mysql://localhost:3306/gesjornadas";
 	
     public static String LOGIN = "root";
 	public static String PASS = "EiiMii";
