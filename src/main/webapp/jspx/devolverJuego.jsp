@@ -66,13 +66,16 @@
 			}
 		else {
 		%>	
+		<div class="row">
+		<div class="callout callout-info" style="display:block;"><h3>Juego <%= juego %> devuelto con éxito</h3></div>
+		</div>
+			
 		<div class="col-md-6">		
 		<div class="box box-default">
 			<div class="box-header with-border">
-				<h3 class="box-title">Devolución:</h3>
+				<h3 class="box-title">Jugadores:</h3>
 			</div>
-			<div class="box-body">
-			    <div class="callout callout-info" style="display:block;"><h3>Juego <%= juego %> devuelto con éxito</h3></div>				
+			<div class="box-body">				
 				<% for(Jugador j : jugadores) { %>	
 					<div class="callout callout-success" style="display:block;">
 							
@@ -88,10 +91,10 @@
 		<form class="form-signin" method="post" action="alquilerController">	
 		<div class="box box-default">
 			<div class="box-header with-border">
-				<h3 class="box-title">Total JESESTAS:</h3>
+				<h3 class="box-title">JESESTAS:</h3>
 			</div>
 			<div class="box-body">
-				<div class="callout callout-info" style="display:block;"><h3>Juego <%= juego %> devuelto con éxito</h3></div>	
+
 				<% if(jesetas != null) { %>			
 				<% for(Jeseta jeseta : jesetas) { %>	
 					<div class="callout callout-success" style="display:block;">

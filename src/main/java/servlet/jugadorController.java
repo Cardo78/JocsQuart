@@ -137,17 +137,17 @@ public class jugadorController extends HttpServlet {
                 if (iusuario > 0) {
                   mensaje = "<strong>" + j.getNombre() + " " + j.getApellidos() + "</strong> inscrito o modificado correctamente." + "<br>Usuario para acceder: " + user.getUser();
                   tipo = TipoMensaje.SUCCESS;
-                  boolean preinscrito = !(request.getParameter("preinscrito") == null);
-                  IMonederoDAO monedero = db.getMonederoDAO();
-                  int totalJesetas = preinscrito ? 2 : 1;
-                  for (int i = 0; i < totalJesetas; i++) {
-                    Jeseta jesaux = new Jeseta();
-                    jesaux.setDescripcion("Jeseta de Preinscripcion");
-                    jesaux.setTipo("LOGRO");
-                    jesaux.setIdJugador(j.getId());
-                    jesaux.setUsado(false);
-                    monedero.insertJeseta(jesaux);
-                  } 
+                  //boolean preinscrito = !(request.getParameter("preinscrito") == null);
+                  //IMonederoDAO monedero = db.getMonederoDAO();
+                  //int totalJesetas = preinscrito ? 2 : 1;
+                  //for (int i = 0; i < totalJesetas; i++) {
+                  //  Jeseta jesaux = new Jeseta();
+                  //  jesaux.setDescripcion("Jeseta de Preinscripcion");
+                  //  jesaux.setTipo("LOGRO");
+                  //  jesaux.setIdJugador(j.getId());
+                  //  jesaux.setUsado(false);
+                  //  monedero.insertJeseta(jesaux);
+                  //} 
                   break;
                 } 
                 mensaje = "Ha habido un problema al guardar el usuario. Jugador " + j.getNombre() + " creado correctamente pero no se ha generado usuario." + "<br>Revisad que el DNI este cumplimentado y correcto.";

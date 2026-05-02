@@ -129,7 +129,7 @@ public class devolverController extends HttpServlet {
                   jesetas.add(cryptojeseta);
                   jugadores.add(aux.getJugador());
                 } 
-              } 
+              }               
               alquiler.endAlquiler(j.getId());
               request.setAttribute("juego", j.getNombre());
               request.setAttribute("jugadores", jugadores);
@@ -138,6 +138,12 @@ public class devolverController extends HttpServlet {
           } 
         } else {
           alquiler.endAlquiler(j.getId());
+          for (Alquiler aux : alquileres) {
+        	  jugadores.add(aux.getJugador());
+          } 
+          request.setAttribute("juego", j.getNombre());
+          request.setAttribute("jugadores", jugadores);
+          //request.setAttribute("jesetas", jesetas);
         } 
       } else {
         url = "./alquilerController";

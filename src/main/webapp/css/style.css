@@ -12,6 +12,77 @@ td, th {
 	vertical-align: middle;
 	text-align: center;
 }
+
+.img-juego-contenedor {
+        background-color: #f0f0f0; /* Fondo gris claro para rellenar si la imagen es pequeña */
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 120px; /* Altura fija para mantener la cuadrícula alineada */
+        overflow: hidden;
+        border: 1px solid #ddd;
+    }
+
+.img-juego-fija {
+        max-width: 100%;
+        max-height: 100%;
+        /* CAMBIO CLAVE: 'contain' redimensiona sin cortar */
+        object-fit: contain; 
+    }
+    
+.card-juego {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 20px;
+        min-height: 140px; 
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+.lista-detalles {
+        list-style: none;
+        padding-left: 15px;
+        margin: 0;
+        font-size: 0.85em;
+        color: #555;
+    }
+    
+    
+/* Aumentamos el tamaño del header de la editorial */
+.box-header-editorial {
+    height: 80px; /* Un 50% más que el estándar habitual de 50-55px */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px !important;
+}
+
+/* Reescalado del logo de la editorial */
+.edit-logo-reescalado {
+    max-height: 60px; /* Ajustado al nuevo tamaño del header */
+    width: auto;
+    object-fit: contain; /* Redimensiona sin deformar */
+    margin-left: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Ajuste del título para que no se pegue al logo */
+.box-title-grande {
+    font-size: 24px !important; /* Título más legible */
+    font-weight: bold;
+    margin: 0 !important;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%); /* Compatibilidad con navegadores antiguos */
+    opacity: 0.7; /* Opcional: le da un toque más "desactivado" */
+}
+    
   
 .btn-custom{
 	margin-bottom: 10px !important;
@@ -98,4 +169,6 @@ td, th {
 .checkbox-xl{
 	zoom:2 !important;
 }
+
+
 

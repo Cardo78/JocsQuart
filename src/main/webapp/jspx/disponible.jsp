@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- CSS Principal -->	
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+
 <title>DISPONIBLES</title>
 <%			
 	Usuario user = (Usuario) session.getAttribute("usuario");
@@ -15,6 +18,7 @@
 	ArrayList<String> cantidad = (ArrayList<String>) request.getAttribute("cantidad");
 %>
 </head>
+
 <body class="hold-transition sidebar-mini layout-boxed"> 
 	<div class="content-wrapper">
 		<section class="content-header">				
@@ -55,29 +59,46 @@
 
 			</form>
 		</div>
+		
 
-		<%if(disponibles != null) { %>
-		<% for (Pasaporte juego : disponibles){%>
-		<div class="col-md-3 col-xs-12 center">
-			<div class="row">
-  				<div class="col-md-4 col-xs-6">						
-    				<a href="<%=juego.getBgg() %>" target="_blank">
-						<img src="<%=juego.getRutaImagen() %>" alt="<%=juego.getNombre()%>" class="img-responsive img-thumbnail border" <%if(!juego.isJugado()){%> style="filter:grayscale(100%)"<%}%> />
-					</a>
-				</div>
-				<div class="col-md-8 col-xs-6">			
-					<h4 class="card-title"><%=juego.getNombre()%></h5>
-					<div class="form-group">
-						<div class="col-md-4 col-xs-4 icon-desc" style="padding: 0px;"><i class="fa fa-clock-o" aria-hidden="true"></i><span> <%=juego.getDuracion()%>' </span></div>
-						<div class="col-md-4 col-xs-4 icon-desc" style="padding: 0px;"><i class="fa fa-users" aria-hidden="true"></i><span> 1-<%=juego.getMaxjugadores() %></span></div>
-						<div class="col-md-4 col-xs-4 icon-desc" style="padding: 0px;"><i class="fa fa-child" aria-hidden="true"></i><span> <%=juego.getEdad() %></span></div>
-					</div>
-				</div>
-  			</div>
-  		</div>
-  		<%} %>
-  		<%} %>
-  		
+<%if(disponibles != null) { %>
+    <div class="row">
+        <% for (Pasaporte juego : disponibles){%>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card-juego">
+                    <div class="row" style="width: 100%; margin: 0; display: flex; align-items: center;">
+                        
+                        <!-- Columna Izquierda: Contenedor de Imagen -->
+                        <div class="col-md-5 col-xs-4" style="padding: 0;">
+                            <a href="<%=juego.getBgg() %>" target="_blank">
+                                <div class="img-juego-contenedor">
+                                    <img src="<%=juego.getRutaImagen() %>" 
+                                         alt="<%=juego.getNombre()%>" 
+                                         class="img-juego-fija <%if(!juego.isJugado()){%> grayscale <%}%>" />
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Columna Derecha: Detalles -->
+                        <div class="col-md-7 col-xs-8" style="padding-right: 0;">
+                            <h5 style="margin: 0 0 5px 15px; font-weight: bold; color: #333; line-height: 1.2;">
+                                <%=juego.getNombre()%>
+                            </h5>
+                            <ul class="lista-detalles">
+                                <li><i class="fa fa-clock-o"></i> <%=juego.getDuracion()%>'</li>
+                                <li><i class="fa fa-users"></i> 1-<%=juego.getMaxjugadores() %></li>
+                                <li><i class="fa fa-child"></i> <%=juego.getEdad() %>+</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <%} %>
+    </div>
+<%} %>
+
+
 
 		</section>
 	</div>

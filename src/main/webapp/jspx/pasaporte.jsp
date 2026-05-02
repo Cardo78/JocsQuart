@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- CSS Principal -->	
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+
 <title>PASAPORTE</title>
 <%
 	Usuario user = (Usuario) session.getAttribute("usuario");
@@ -49,70 +52,85 @@
 			<%} %>
 		</section>	
 		<section class="content">
-		<!-- Consultamos para crear pasaporte -->
-		<%if(pasaportes!=null){ %>
-			<!-- Creamos un orden 0 para iniciar las cajas -->
-			<%int orden = 0; %>		
-			<!-- Por cada juego de pasaporte vamos a comprobar si la editorial es distinta -->
-			<% for (Pasaporte juego : pasaportes){%>   
-				<!-- Si hay cambio de orden se cierra la caja anterior y se crea una nueva caja -->	
-				<% if(juego.getEditorial().getOrden() > orden) { %>
-					<!-- Si no es la primera, se cierra la caja -->
-					<%  if(orden!=0){ %>
-						</div> <!-- div class body -->
-					</div> <!-- div class box -->
-					<%} %>
-					<!-- Se crea la caja -->
-					<% orden = juego.getEditorial().getOrden(); %>
-					<div class="box box-default collapsed-box">
-					<div class="box-header with-border">
-					<h3 class="box-title"><%=juego.getEditorial().getNombre()%></h3>
-					<img class="edit-logo" src="<%=juego.getEditorial().getLogo() %>" />
-						<div class="box-tools pull-right">
-							<button class="btn btn-box-tool" data-originial-title="minimizar" data-widget="collapse" data-toggle="tooltip" title="minimizar" style="zoom:2; color:red">
-								<i class="fa fa-plus"></i>
-							</button>
-						</div>				
-					</div> <!-- div class header -->
-				<div class="box-body">
-					<div class="row">										
-				<%} %>
-				
-				
-				
-				<div class="col-md-3 col-xs-12 center">.
-					
-  						<div class="row">
-  							<div class="col-md-4 col-xs-6">						
-    						<a href="<%=juego.getBgg() %>" target="_blank">
-								<img src="<%=juego.getRutaImagen() %>" alt="<%=juego.getNombre()%>" class="img-responsive img-thumbnail border" <%if(!juego.isJugado()){%> style="filter:grayscale(100%)"<%}%> />
-							</a>
-							</div>
-							<div class="col-md-8 col-xs-6">			
-								<h4 class="card-title"><%=juego.getNombre()%></h5>
-								<div class="form-group">
-								<div class="col-md-4 col-xs-4 icon-desc" style="padding: 0px;"><i class="fa fa-clock-o" aria-hidden="true"></i><span> <%=juego.getDuracion()%>' </span></div>
-								<div class="col-md-4 col-xs-4 icon-desc" style="padding: 0px;"><i class="fa fa-users" aria-hidden="true"></i><span> 1-<%=juego.getMaxjugadores() %></span></div>
-								<div class="col-md-4 col-xs-4 icon-desc" style="padding: 0px;"><i class="fa fa-child" aria-hidden="true"></i><span> <%=juego.getEdad() %></span></div>
-								</div>
-							</div>
-  						</div>
-  					</div>
-				
-			<%} %>
-				</div>
-				</div> <!-- div class body -->
-			</div> <!-- div class box -->
-		<%} %>			
-				
+    <!-- Consultamos para crear pasaporte -->
+    <%if(pasaportes != null){ %>
+        <%int orden = 0; %>     
+        
+        <% for (Pasaporte juego : pasaportes){%>   
+        
+            <%-- DETECCIÓN DE CAMBIO DE EDITORIAL --%>
+            <% if(juego.getEditorial().getOrden() > orden) { %>
+                <%-- Si no es la primera editorial, cerramos los divs anteriores --%>
+                <% if(orden != 0){ %>
+                        </div> <!-- Cierre de row de juegos -->
+                    </div> <!-- Cierre de box-body -->
+                </div> <!-- Cierre de box -->
+                <%} %>
+                
+                <% orden = juego.getEditorial().getOrden(); %>
+                <div class="box box-default collapsed-box">
+    			<%-- Aplicamos la nueva clase de header ampliado --%>
+    				<div class="box-header with-border box-header-editorial">
+        
+				        <div style="display: flex; align-items: center;">
+            				<h3 class="box-title-grande"><%=juego.getEditorial().getNombre()%></h3>	            
+    				        <%-- Logo reescalado --%>
+            				<img class="edit-logo-reescalado" 
+                 				src="<%=juego.getEditorial().getLogo() %>" 
+                 				alt="Logo <%=juego.getEditorial().getNombre()%>" />
+        				</div>
 
-		<div class="box box-default">
-		<div class="col-md-12">			
-			<div class="bg-green-active inner" style="text-align: center" align="center">	
-					<h2><%=jesetas %> jesetas</h2>		
-			</div>
-		</div>	
-		</div>
+        			<div class="box-tools pull-right" >
+            		<%-- Botón de minimizar con zoom para que no quede pequeño en el header grande --%>
+            			<button class="btn btn-box-tool" data-widget="collapse" 
+                    		style="zoom: 2.5; color: #dd4b39; padding: 5px;">
+                		<i class="fa fa-plus"></i>
+            			</button>
+        			</div>              
+    			</div>
+                <div class="box-body">
+                    <div class="row"> <!-- Este row contendrá los 4 juegos por línea -->
+            <%} %>
+            
+            <%-- ESTRUCTURA DE CADA JUEGO (Igual que en Disponibles) --%>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card-juego"> <!-- Clase definida en tu CSS principal -->
+                    <div class="row" style="width: 100%; margin: 0; display: flex; align-items: center;">
+                        
+                        <!-- Lado Izquierdo: Contenedor de Imagen -->
+                        <div class="col-md-5 col-xs-4" style="padding: 0;">
+                            <a href="<%=juego.getBgg() %>" target="_blank">
+                            <div class="img-juego-contenedor">
+    							<img src="<%=juego.getRutaImagen() %>" 
+         						alt="<%=juego.getNombre()%>" 
+         						<%-- Inyectamos la clase 'grayscale' solo si NO está jugado --%>
+         						class="img-juego-fija <% if(!juego.isJugado()){ %> grayscale <% } %>" 
+    							/>
+							</div>                            
+                            </a>
+                        </div>
+
+                        <!-- Lado Derecho: Detalles en lista -->
+                        <div class="col-md-7 col-xs-8" style="padding-right: 0;">
+                            <h5 class="juego-titulo"> <!-- Sugiero añadir esta clase para el control del texto -->
+                                <%=juego.getNombre()%>
+                            </h5>
+                            <ul class="lista-detalles"> <!-- Clase definida en tu CSS principal -->
+                                <li><i class="fa fa-clock-o"></i> <%=juego.getDuracion()%>'</li>
+                                <li><i class="fa fa-users"></i> 1-<%=juego.getMaxjugadores() %></li>
+                                <li><i class="fa fa-child"></i> <%=juego.getEdad() %>+</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <%} %>
+            <%-- Cerramos la última editorial abierta --%>
+                </div> <!-- Cierre de row -->
+            </div> <!-- Cierre de box-body -->
+        </div> <!-- Cierre de box -->
+    <%} %>          
 </section>
 </div>
 <script type="text/javascript">
