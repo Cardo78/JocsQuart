@@ -15,6 +15,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private final String USUARIONAME = "SELECT * FROM gesjornadas.usuario WHERE cuser = ?";
 	private final String USUARIOJUGADOR = "SELECT * FROM gesjornadas.usuario WHERE jugador_id = ?";
 	private final String USUARIOS = "SELECT * FROM gesjornadas.usuario WHERE tipo = 'NORMAL'";
+	private final String UPDATECLAVE = "UPDATE gesjornadas.usuario SET cpass = null WHERE idusuario = ?";
 	private final String ID = "idusuario";
 	private final String USER = "cuser";
 	private final String PASS = "cpass";
@@ -30,17 +31,17 @@ public class UsuarioDAO implements IUsuarioDAO {
 			connect = new DBBasic();
 			if (connect.Conectar()) {
 				PreparedStatement stm = connect.conexion
-						.prepareStatement("SELECT * FROM gesjornadas.usuario WHERE idusuario = ?");
+						.prepareStatement(USUARIO);
 				stm.setInt(1, id);
 				ResultSet rs = stm.executeQuery();
 
 				while (rs.next()) {
-					user.setId(rs.getInt("idusuario"));
-					user.setUser(rs.getString("cuser"));
-					user.setPass(rs.getString("cpass"));
-					user.setTipo(rs.getString("tipo"));
-					user.setColor(rs.getString("ecolor"));
-					user.setIdJugador(rs.getInt("jugador_id"));
+					user.setId(rs.getInt(ID));
+					user.setUser(rs.getString(USER));
+					user.setPass(rs.getString(PASS));
+					user.setTipo(rs.getString(TIPO));
+					user.setColor(rs.getString(COLOR));
+					user.setIdJugador(rs.getInt(JUGADOR));
 					if (rs.wasNull()) {
 						user.setIdJugador(-1);
 					}
@@ -69,8 +70,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 		try {
 			connect = new DBBasic();
 			if (connect.Conectar()) {
-				PreparedStatement stm = connect.conexion.prepareStatement(
-						"UPDATE gesjornadas.usuario SET cuser = ?, cpass = ?, tipo = ?, ecolor = ?, jugador_id = ? WHERE idusuario = ?");
+				PreparedStatement stm = connect.conexion.prepareStatement(UPDATEUSUARIO);
 				stm.setString(1, user.getUser());
 				stm.setString(2, user.getPass());
 				stm.setString(3, user.getTipo());
@@ -106,9 +106,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 		try {
 			connect = new DBBasic();
 			if (connect.Conectar()) {
-				PreparedStatement stm = connect.conexion.prepareStatement(
-						"INSERT INTO gesjornadas.usuario (cuser, cpass, tipo, ecolor, jugador_id) VALUES (?,?,?,?,?)",
-						1);
+				PreparedStatement stm = connect.conexion.prepareStatement(INSERTUSUARIO, 1);
 				stm.setString(1, user.getUser());
 				stm.setString(2, user.getPass());
 				stm.setString(3, user.getTipo());
@@ -149,17 +147,17 @@ public class UsuarioDAO implements IUsuarioDAO {
 			connect = new DBBasic();
 			if (connect.Conectar()) {
 				PreparedStatement stm = connect.conexion
-						.prepareStatement("SELECT * FROM gesjornadas.usuario WHERE cuser = ?");
+						.prepareStatement(USUARIONAME);
 				stm.setString(1, user);
 				ResultSet rs = stm.executeQuery();
 
 				while (rs.next()) {
-					usuario.setId(rs.getInt("idusuario"));
-					usuario.setUser(rs.getString("cuser"));
-					usuario.setPass(rs.getString("cpass"));
-					usuario.setTipo(rs.getString("tipo"));
-					usuario.setColor(rs.getString("ecolor"));
-					usuario.setIdJugador(rs.getInt("jugador_id"));
+					usuario.setId(rs.getInt(ID));
+					usuario.setUser(rs.getString(USER));
+					usuario.setPass(rs.getString(PASS));
+					usuario.setTipo(rs.getString(TIPO));
+					usuario.setColor(rs.getString(COLOR));
+					usuario.setIdJugador(rs.getInt(JUGADOR));
 					if (rs.wasNull()) {
 						usuario.setIdJugador(-1);
 					}
@@ -189,17 +187,17 @@ public class UsuarioDAO implements IUsuarioDAO {
 			connect = new DBBasic();
 			if (connect.Conectar()) {
 				PreparedStatement stm = connect.conexion
-						.prepareStatement("SELECT * FROM gesjornadas.usuario WHERE jugador_id = ?");
+						.prepareStatement(USUARIOJUGADOR);
 				stm.setInt(1, idJugador);
 				ResultSet rs = stm.executeQuery();
 
 				while (rs.next()) {
-					usuario.setId(rs.getInt("idusuario"));
-					usuario.setUser(rs.getString("cuser"));
-					usuario.setPass(rs.getString("cpass"));
-					usuario.setTipo(rs.getString("tipo"));
-					usuario.setColor(rs.getString("ecolor"));
-					usuario.setIdJugador(rs.getInt("jugador_id"));
+					usuario.setId(rs.getInt(ID));
+					usuario.setUser(rs.getString(USER));
+					usuario.setPass(rs.getString(PASS));
+					usuario.setTipo(rs.getString(TIPO));
+					usuario.setColor(rs.getString(COLOR));
+					usuario.setIdJugador(rs.getInt(JUGADOR));
 					if (rs.wasNull()) {
 						usuario.setIdJugador(-1);
 					}
@@ -229,18 +227,18 @@ public class UsuarioDAO implements IUsuarioDAO {
 			connect = new DBBasic();
 			if (connect.Conectar()) {
 				PreparedStatement stm = connect.conexion
-						.prepareStatement("SELECT * FROM gesjornadas.usuario WHERE tipo = 'NORMAL'");
+						.prepareStatement(USUARIOS);
 
 				ResultSet rs;
 				Usuario usuario;
 				for (rs = stm.executeQuery(); rs.next(); usuarios.add(usuario)) {
 					usuario = new Usuario();
-					usuario.setId(rs.getInt("idusuario"));
-					usuario.setUser(rs.getString("cuser"));
-					usuario.setPass(rs.getString("cpass"));
-					usuario.setTipo(rs.getString("tipo"));
-					usuario.setColor(rs.getString("ecolor"));
-					usuario.setIdJugador(rs.getInt("jugador_id"));
+					usuario.setId(rs.getInt(ID));
+					usuario.setUser(rs.getString(USER));
+					usuario.setPass(rs.getString(PASS));
+					usuario.setTipo(rs.getString(TIPO));
+					usuario.setColor(rs.getString(COLOR));
+					usuario.setIdJugador(rs.getInt(JUGADOR));
 					if (rs.wasNull()) {
 						usuario.setIdJugador(-1);
 					}
@@ -260,5 +258,32 @@ public class UsuarioDAO implements IUsuarioDAO {
 		}
 
 		return usuarios;
+	}
+
+	@Override
+	public boolean setClave(Usuario user) throws Exception {
+
+		DBBasic connect = null;
+		int resultado = 0;
+
+		try {
+			connect = new DBBasic();
+			if (connect.Conectar()) {
+				PreparedStatement stm = connect.conexion.prepareStatement(UPDATECLAVE);
+				stm.setInt(1, user.getId());
+				resultado = stm.executeUpdate();				
+			}
+		} catch (SQLException var9) {
+			throw var9;
+		} catch (Exception var10) {
+			throw var10;
+		} finally {
+			if (connect != null) {
+				connect.desconectar();
+			}
+
+		}
+
+		return (resultado > 0);
 	}
 }

@@ -216,6 +216,26 @@ public class configController extends HttpServlet {
             mensaje = "Ha habido un problema al guardar la Editorial " + editorial.getNombre() + "." + "<br>Revisad que los datos proporcionados son correctos.";
             tipo = TipoMensaje.WARNING;
             break;
+          case -24412918:
+        	  if(!str.equals("resetPassword")) {
+        		  break;
+        	  }
+
+        	  user = userDAO.getUsuarioName(request.getParameter("numPulsera"));
+        	  if (userDAO.setClave(user)) {
+                  mensaje = "<strong>" + user.getUser() + "</strong> Clave reseteada.";
+                  tipo = TipoMensaje.SUCCESS;
+                } else {
+                	if(user == null) {
+                		mensaje = "No se ha podido resetear la pulsera " + request.getParameter("numPulsera") + " ya que no existe.";
+                	}else {
+                        mensaje = "Ha habido un problema al resetear la clave de la pulsera " + user.getUser() + "." + 
+                                "<br>Revisad que los datos proporcionados son correctos.";
+                	}
+                  tipo = TipoMensaje.WARNING;
+                } 
+        	  
+
         } 
       } 
       int cryptoAdmin = monederoDAO.getTotalJesetasUsuario(admin.getId());

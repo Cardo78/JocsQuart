@@ -152,7 +152,7 @@
 	
 	$(document).ready(function() {
 		var tipoUser = $("#userMode").val();
-
+		
 		if (tipoUser == null) {
 			$("#liInicio").css("display", "");
 			$("#liLogin").css("display", "");

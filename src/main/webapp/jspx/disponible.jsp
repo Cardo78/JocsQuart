@@ -83,8 +83,6 @@
 	</div>
 	
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script type="text/javascript">
-    
-    </script>
+<script type="text/javascript"></script>
 </body>
 </html>

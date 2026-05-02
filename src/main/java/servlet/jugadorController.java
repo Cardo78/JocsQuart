@@ -127,14 +127,15 @@ public class jugadorController extends HttpServlet {
               Usuario user = usuarioDAO.getUsuarioJugador(j.getId());
               if (user.getId() < 0) {
                 user = new Usuario();
-                user.setPass(request.getParameter("pulsera"));
-                user.setUser(request.getParameter("dni"));
+                //user.setPass(request.getParameter("pulsera"));
+                //user.setUser(request.getParameter("dni"));
+                user.setUser(request.getParameter("pulsera"));
                 user.setColor("RED");
                 user.setTipo("JUGADOR");
                 user.setIdJugador(j.getId());
                 int iusuario = usuarioDAO.insertUsuario(user);
                 if (iusuario > 0) {
-                  mensaje = "<strong>" + j.getNombre() + " " + j.getApellidos() + "</strong> inscrito o modificado correctamente." + "<br>Usuario para acceder: " + user.getUser() + "<br>Clave de Acceso: " + user.getPass();
+                  mensaje = "<strong>" + j.getNombre() + " " + j.getApellidos() + "</strong> inscrito o modificado correctamente." + "<br>Usuario para acceder: " + user.getUser();
                   tipo = TipoMensaje.SUCCESS;
                   boolean preinscrito = !(request.getParameter("preinscrito") == null);
                   IMonederoDAO monedero = db.getMonederoDAO();
@@ -153,8 +154,9 @@ public class jugadorController extends HttpServlet {
                 tipo = TipoMensaje.WARNING;
                 break;
               } 
-              user.setPass(request.getParameter("pulsera"));
-              user.setUser(request.getParameter("dni"));
+              //user.setPass(request.getParameter("pulsera"));
+              //user.setUser(request.getParameter("dni"));
+              user.setUser(request.getParameter("pulsera"));
               if (!usuarioDAO.setUsuario(user)) {
                 mensaje = "Ha habido un problema al guardar el usuario. Jugador " + j.getNombre() + " creado correctamente pero no se ha modificado los datos del usuario." + "<br>Revisad que el DNI este cumplimentado y correcto.";
                 tipo = TipoMensaje.WARNING;

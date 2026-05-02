@@ -15,4 +15,6 @@ public interface IUsuarioDAO {
 	Usuario getUsuarioJugador(int var1) throws Exception;
 
 	List<Usuario> getUsuarios() throws Exception;
+	
+	boolean setClave(Usuario var1) throws Exception;
 }

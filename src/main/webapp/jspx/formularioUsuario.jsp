@@ -83,7 +83,7 @@ if(request.getAttribute("infantil") != null){
 					<div class="form-group">
 						<!-- <label for="dni">DNI*:	 (Si el usuario no tiene DNI todavía, guardar su fecha de nacimiento con el siguiente formato: ddmmyyyy)</label> -->
 						<div class="col-md-6 form-group">
-						 	<label for="dni">DNI:* (obligatorio, aplicar el valor que os digan cuando es infantil)</label>
+						 	<label for="dni">DNI:* (Obligatorio para recuperar clave)</label>
 							<input type="text" class="form-control" id="dni" name="dni" placeholder="DNI"
 							value="<%=dni%>" required>
 						</div>

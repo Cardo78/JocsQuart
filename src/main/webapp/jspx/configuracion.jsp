@@ -64,8 +64,11 @@
 				</div>	
 				<%}%>	
 			</div>
+		
 			
-			<div class="col-md-6 col-xs-12"> <!-- column 6 Editor de usuarios -->
+		<div class="row"> <!-- 1 linea de cajas -->
+		
+		<div class="col-md-6 col-xs-12"> <!-- column 6 Editor de usuarios -->
 			<div class="box box-default">
     			<div class="box-header with-border">
     				<h3 class="box-title">Editor de usuarios:</h3>
@@ -177,9 +180,30 @@
     	</div>
     </div>
     
+    </div> <!-- 1 linea de cajas -->
+    
+    <div class="row"> <!-- 2 linea de cajas -->
+    <div class="col-md-6 col-xs-12">
+    <div class="box box-default"> <div class="box-header with-border">
+            <h3 class="box-title">Resetear clave:</h3>
+        </div>
+        <div class="box-body">
+        	<form class="form-horizontal" id="formResetClave" onsubmit="resetearClave(); return false;">            
+                <div class="form-group col-md-12">
+                    <label for="numPulsera">Número de Pulsera:</label> 
+                    <input type="text" class="form-control" id="numPulsera" name="numPulsera" placeholder="Introduce el código de la pulsera" required>
+                </div>
+                <p align="right">
+                    <button type="button" class="btn btn-warning" onclick="resetearClave()">Resetear Clave</button>
+                </p>
+            </form>
+        </div>
+    </div>
+	</div>
+
+    
     <div class="col-md-6 col-xs-12"> <!-- column 6 Editor de Jesetas -->
-		<div class="box box-default">
-    		<div class="box-header with-border">
+		<div class="box box-default"> <div class="box-header with-border">
     			<h3 class="box-title">Añadir Jesetas:</h3>
     		</div> <!-- box-header -->
     		<div class="box-body">
@@ -200,47 +224,70 @@
     	</div>   
     </div>
     
+    </div>
+    
+    <div class="row"> <!-- 3 linea de cajas -->    
+    
     <%if(ubicaciones != null) {%>
     <div class="col-md-6 col-xs-12">  	         	
     	<div class="box box-default">
     		<div class="box-header with-border">
     			<h3 class="box-title">Ubicaciones:</h3>
     		</div> <!-- box-header -->
-    	</div>
-    	<div class="box-body">
+    		<div class="box-body">
     		<form class="form-horizontal" role="form" method="post" action="configController" id="configControlUb" name="configUbicaciones">   
-			<label>Ubicación:</label>
-    		<select id="select_ubicacion" class="form-control" name="select_ubicacion">
+				<div class="form-group col-md-12">
+				<label>Ubicación:</label>
+    			<select id="select_ubicacion" class="form-control" name="select_ubicacion">
     			<% for (Ubicacion t : ubicaciones) {%>
-    			<option value="<%=t.getId() %>"	<%if(t.getId()==1){%>selected<%} %>><%=t.getNombre() %></option> 
+    				<option value="<%=t.getId() %>"	<%if(t.getId()==1){%>selected<%} %>><%=t.getNombre() %></option> 
     			<% } %>
-    		</select>    													    									     	
-      		<button type="submit" class="btn btn-success" id="btnConfirmar" name="action" value="disponibilidades">Cargar Disponibles</button>	
-			<a data-toggle="modal" href="#ntipo" class="btn btn-primary btn-large">Nueva Ubicación</a>
-			</form>
-		</div>	
-		<!-- VENTANA MODAL DE NUEVAS UBICACIONES -->
-		<div id="ntipo" class="modal modal-primary" style="display: none;">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-        					<a data-dismiss="modal" class="close">×</a>
-			    			<h3>Nueva Ubicación</h3>
-     					</div>
-					</div>
-					<div class="modal-body">
-						<p><label>Nombre:</label>
-        				<input type="text" class="form-control" id="nombreUbicacion" name="nombreUbicacion"	placeholder="Nombre*" value="" required>
-    					</p>            
-    				</div>
-    				<div class="modal-footer">
-    					<button class="btn btn-outline pull-left" type="button" data-dismiss="modal">Cerrar</button>
-        				<button type="button" class="btn btn-outline" onclick="anyadirUbicacion()" data-dismiss="modal">Confirmar</button>
-    				</div>
+    			</select>    
     			</div>
-		</div><!-- Div Class Tipo -->
-
+    		
+    			<div class="form-group col-md-12">
+                    <p align="right">
+                        <button type="submit" class="btn btn-success" id="btnConfirmar" name="action" value="disponibilidades">Cargar Disponibles</button>	
+                        <a data-toggle="modal" href="#ntipo" class="btn btn-primary">Nueva Ubicación</a>
+                    </p>
+            	</div>
+			</form>
+			
+			</div> <!-- /.box-body -->
+    	</div> <!-- /.box -->    	
 	</div>
+	
+	</div><!-- 3 linea de cajas -->
+	
+<!-- VENTANA MODAL DE NUEVAS UBICACIONES -->
+<div id="ntipo" class="modal modal-primary fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Aplicamos el color de fondo azul a todo el contenido del modal -->
+        <div class="modal-content" style="background-color: #3c8dbc; border-color: #367fa9;">
+            <div class="modal-header" style="border-bottom-color: rgba(0,0,0,0.1);">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #fff;">×</span>
+                </button>
+                <h4 class="modal-title">Nueva Ubicación</h4>
+            </div>
+            
+            <!-- Forzamos el fondo azul también en el body -->
+            <div class="modal-body" style="background-color: #3c8dbc;">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" id="nombreUbicacion" 
+                           name="nombreUbicacion" placeholder="Nombre*" 
+                           style="background: rgba(255,255,255,0.2); border: 1px solid #fff; color: #fff;">
+                </div>            
+            </div>
+            
+            <div class="modal-footer" style="border-top-color: rgba(0,0,0,0.1);">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-outline" onclick="anyadirUbicacion()" data-dismiss="modal">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
 	<% } %>
 
 </section>
@@ -278,6 +325,26 @@
 		$('body').append($form);
 		$form.submit();
 	}
+	
+	function resetearClave() {
+	    var pulsera = document.getElementById("numPulsera").value;
+	    
+	    if(pulsera.trim() === "") {
+	        alert("Por favor, introduce un número de pulsera.");
+	        return;
+	    }
+
+	    // Creamos el formulario dinámico para el submit
+	    var $form = $("<form method='post' action='configController'></form>");
+	    
+	    // Acción que deberá manejar tu Servlet configController
+	    $form.append('<input type="hidden" name="action" value="resetPassword" />');
+	    $form.append('<input type="hidden" name="numPulsera" value="' + pulsera + '" />');
+	            
+	    $('body').append($form);
+	    $form.submit();
+	}
+
 	</script>
 	
 	</body>
