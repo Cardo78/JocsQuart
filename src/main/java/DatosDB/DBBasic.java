@@ -34,18 +34,20 @@ public class DBBasic extends IDBDAO {
 	public static String DBURL = "jdbc:mysql://localhost:3306/gesjornadas";
 	
     public static String LOGIN = "root";
-	public static String PASS = "EiiMii";
+	public static String PASS = "J3sta2023#";
 	
 	//Valores de conexion con Mariadb
 	public static String LOGINDEBUG = "root";
 	public static String PASSDEBUG = "EiiMii";
+	
 	private static boolean DEBUG = true;
 
 	
 	
 	public DBBasic() throws IOException {
 		Properties prop = new Properties();
-		String rutaConfig = DEBUG ? "config.properties" : "/tmp/config.properties";
+		String rutaConfig = DEBUG ? "/tmp/config.properties" : "config.properties";
+		
 		File fileConfig = new File(rutaConfig);
 	
 	    if (fileConfig.exists()) {
@@ -86,6 +88,10 @@ public class DBBasic extends IDBDAO {
 	    try (OutputStream out = new FileOutputStream(fileConfig)) {
 	        prop.store(out, "Configuración guardada automáticamente");
 	        System.out.println("Datos guardados con éxito en: " + fileConfig.getAbsolutePath());
+	    }
+	    catch(IOException io) {
+	        io.printStackTrace(); // Esto saldrá en la consola de Eclipse (Server Logs)
+	        throw io;             // Esto enviará el error hacia arriba
 	    }
 	}
 	

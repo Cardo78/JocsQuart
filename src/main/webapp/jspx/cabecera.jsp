@@ -114,8 +114,9 @@
 	<!-- Menu de opción -->
 		<ul class="sidebar-menu">
 			<li class="header">MENU PRINCIPAL</li>
-			<li class="nav-item" class="active">			
-				<a class="nav-link" id="liInicio" href="./menuController?section=0"><i class="fa fa-home"></i><span>Inicio</span></a></li>  		
+			<li class="nav-item" class="active">	
+				<a class="nav-link" id="liInicio" href="${pageContext.request.contextPath}/menuController?section=0"><i class="fa fa-home"></i><span>Inicio</span></a></li>  
+				<!--  <a class="nav-link" id="liInicio" href="./menuController?section=0"><i class="fa fa-home"></i><span>Inicio</span></a></li>  -->  		
           	<li class="nav-item">
           		<a class="nav-link" id="liLogin" href="./menuController?section=1"><i class="fa fa-sign-in"></i><span>Log In</span></a></li>	
           	<li class="nav-item">
@@ -146,7 +147,7 @@
 	</section>
 	</aside>
 		
-</body>
+
 
 <script type="text/javascript">
 	
@@ -240,4 +241,3 @@
 	});
 	
 </script>
-</html>

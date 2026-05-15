@@ -16,9 +16,7 @@
     <!-- AdminLTE -->
   	<link rel="stylesheet" href="./css/AdminLTE/AdminLTE.min.css"> 
 	<!-- AdminLTE Skin -->
-	<link rel="stylesheet" href="./css/AdminLTE/skins/_all-skins.css">
-	<!-- Font Awesome -->
- 	<link href="./css/font-awesome/css/font-awesome.min.css" rel="stylesheet"> 		
+	<link rel="stylesheet" href="./css/AdminLTE/skins/_all-skins.css">		
 	<!-- CSS User -->
 	<link rel="stylesheet" href="./css/style.css">
 
@@ -60,6 +58,7 @@ String mensaje = (request.getAttribute("mensaje") == null) ? "" : (String)reques
 			</div>
 		</section>
 	</div>
+	
 
 </body>
 </html>

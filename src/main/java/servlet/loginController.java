@@ -118,7 +118,7 @@ public class loginController extends HttpServlet {
         	
     		}
     	}
-    } catch (Exception e) {
+    } catch (Exception e) {    	
       url = "./jspx/login.jsp";
       mensaje = e.getMessage();
     } finally {

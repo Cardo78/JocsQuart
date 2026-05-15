@@ -26,30 +26,27 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-boxed">
-	<!-- <div class="jumbotron text-center">  -->
-	<!-- <h1>Aplicación de Jocs Quart</h1>
-	<p>Sistema de gestión de jugadores y alquileres</p> -->
-	
-	<div class="container-fluid">
-	
-	<div class="col-md-12 col-xs-12 text-center img-index">	
-		<img src="images/Jesta.jpg" class="img-index img-responsive center-block" alt="Responsive image">	
-				
+    <div class="wrapper"> 
+    <div class="content-wrapper" style="min-height: 100vh;">	
+		<div class="container-fluid">
+        	<div class="col-md-12 col-xs-12 text-center img-index">	
+        		<img src="images/Jesta.jpg" class="img-index img-responsive center-block" alt="Responsive image">					
+			</div>
+			<div class="col-md-12 col-xs-12 text-center img-index">
+			<img src="images/patrocinadores.png" class="img-index img-responsive center-block" alt="Responsive image">
+			</div>
+			<div class="col-md-5 col-xs-12 text-center img-index">
+			<img src="images/editoriales01.jpg" class="img-index img-responsive center-block" alt="Responsive image">
+			</div>
+			<div class="col-md-5 col-xs-12 text-center img-index">
+			<img src="images/editoriales02.jpg" class="img-index img-responsive center-block" alt="Responsive image">
+			</div>
+			<div class="col-md-2 col-xs-6 text-center img-index">
+			<img src="images/editoriales03.jpg" class="img-index img-responsive center-block" alt="Responsive image">
+			</div>
+		</div>
 	</div>
-	<div class="col-md-12 col-xs-12 text-center img-index">
-		<img src="images/patrocinadores.png" class="img-index img-responsive center-block" alt="Responsive image">
-	</div>
-	<div class="col-md-5 col-xs-12 text-center img-index">
-		<img src="images/editoriales01.jpg" class="img-index img-responsive center-block" alt="Responsive image">
-	</div>
-	<div class="col-md-5 col-xs-12 text-center img-index">
-		<img src="images/editoriales02.jpg" class="img-index img-responsive center-block" alt="Responsive image">
-	</div>
-	<div class="col-md-2 col-xs-6 text-center img-index">
-		<img src="images/editoriales03.jpg" class="img-index img-responsive center-block" alt="Responsive image">
-	</div>
-	</div>
-	
+    </div>
 </body>
 
 <script type="text/javascript">
@@ -62,6 +59,10 @@ window.onload=function() {
 		//location.href="./menuController?section=0";
 		//location.reload();				
 	}
+	// Forzar re-layout de AdminLTE
+    if ($.AdminLTE && $.AdminLTE.layout) {
+        $.AdminLTE.layout.fix();
+    }
 }
 
 	$(document).ready(function() {

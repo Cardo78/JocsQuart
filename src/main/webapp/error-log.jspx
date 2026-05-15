@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" isErrorPage="true" />
+    
+    <html>
+        <head>
+            <title>Error de Servidor</title>
+            <script type="text/javascript">
+                <![CDATA[
+                // Tomcat guarda la excepción original en este atributo de la petición
+                var mensajeErrorJava = "${requestScope['javax.servlet.error.message']}";
+                var tipoExcepcion = "${requestScope['javax.servlet.error.exception_type']}";
+                
+                console.error("--------- ERROR DESDE ECLIPSE/TOMCAT ---------");
+                console.error("Tipo: " + tipoExcepcion);
+                console.error("Mensaje: " + mensajeErrorJava);
+                console.error("----------------------------------------------");
+                ]]>
+            </script>
+        </head>
+        <body>
+            <div style="color: red; padding: 20px; font-family: sans-serif;">
+                <h2>Ocurrió un error en la gestión del juego/pulsera.</h2>
+                <p>El detalle técnico ha sido enviado a la consola del desarrollador (F12).</p>
+            </div>
+        </body>
+    </html>
+</jsp:root>
